@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ورود به سامانه نیازسنجی آموزشی</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0066B3;
+            --primary-hover: #005190;
+            --danger-color: #ef4444;
+            --background-gradient-from: #0f172a;
+            --background-gradient-to: #1e293b;
+            --card-background: #ffffff;
+            --border-color: #d1d5db;
+            --focus-ring: rgba(0, 102, 179, 0.35);
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --radius: 14px;
+            --shadow-xl: 0 25px 50px -12px rgba(15, 23, 42, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Vazirmatn', 'Tahoma', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: radial-gradient(circle at top, #1e40af, #020617 55%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body.logged-in {
+            background: #e5e7eb;
+            display: block;
+            align-items: stretch;
+            padding: 0;
+            overflow-y: auto;
+        }
+
+        .auth-shell {
+            width: 100%;
+            max-width: 1100px;
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 4fr);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(15, 23, 42, 0.8));
+            border-radius: 24px;
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            backdrop-filter: blur(20px);
+        }
+
+        body.logged-in .auth-shell {
+            max-width: 100%;
+            min-height: 100vh;
+            grid-template-columns: minmax(0, 1fr);
+            background: #f3f4f6;
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
+            overflow: visible;
+        }
+
+        .brand-pane {
+            position: relative;
+            padding: 2.5rem 2.75rem;
+            color: #e5e7eb;
+            background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.3), transparent 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        body.logged-in .brand-pane {
+            display: none;
+        }
+
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+        }
+
+        .brand-logo {
+            height: 52px;
+            object-fit: contain;
+            filter: drop-shadow(0 6px 14px rgba(15, 23, 42, 0.7));
+            background: rgba(15, 23, 42, 0.25);
+            border-radius: 999px;
+            padding: 0.4rem 0.75rem;
+        }
+
+        .brand-title {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+
+        .brand-title span:first-child {
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #9ca3af;
+        }
+
+        .brand-title span:last-child {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #e5e7eb;
+        }
+
+        .hero-copy {
+            margin-top: 3rem;
+        }
+
+        .hero-copy h1 {
+            margin: 0 0 0.9rem 0;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #f9fafb;
+        }
+
+        .hero-copy p {
+            margin: 0;
+            color: #cbd5f5;
+            font-size: 0.98rem;
+            line-height: 1.9;
+        }
+
+        .hero-meta {
+            margin-top: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+            font-size: 0.9rem;
+            color: #9ca3af;
+        }
+
+        .mock-info {
+            background: rgba(15, 23, 42, 0.7);
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.9rem;
+            border: 1px solid rgba(55, 65, 81, 0.8);
+        }
+
+        .mock-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #22c55e;
+            box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
+        }
+
+        .mock-cred {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            margin-top: 0.4rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.8rem;
+            color: #e5e7eb;
+        }
+
+        .mock-cred span {
+            direction: ltr;
+        }
+
+        .auth-pane {
+            background: radial-gradient(circle at top, rgba(248, 250, 252, 0.96), rgba(226, 232, 240, 0.98));
+            padding: 2.75rem 2.75rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        body.logged-in .auth-pane {
+            background: #f9fafb;
+            padding: 1.5rem 2.25rem 1.5rem;
+        }
+
+        .auth-header {
+            margin-bottom: 1.75rem;
+        }
+
+        .auth-header h2 {
+            margin: 0 0 0.35rem 0;
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .auth-header p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        body.logged-in .auth-header {
+            display: none;
+        }
+
+        form {
+            margin: 0;
+        }
+
+        .form-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.2rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            border-radius: 999px;
+            border: 1px solid var(--border-color);
+            padding: 0.8rem 1rem;
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, transform 0.08s ease;
+            background-color: #f9fafb;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.02), 0 0 0 4px var(--focus-ring);
+            background-color: #ffffff;
+        }
+
+        .input-prefix {
+            position: absolute;
+            inset-inline-start: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8rem;
+            color: #6b7280;
+            pointer-events: none;
+        }
+
+        .input-with-prefix {
+            padding-inline-start: 5.2rem;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .password-toggle {
+            position: absolute;
+            inset-inline-end: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            padding: 0;
+            font-size: 0.8rem;
+            color: #6b7280;
+            cursor: pointer;
+        }
+
+        .password-toggle:hover {
+            color: #111827;
+        }
+
+        .error-message {
+            display: none;
+            margin-top: 0.25rem;
+            font-size: 0.8rem;
+            color: var(--danger-color);
+        }
+
+        .error-visible {
+            display: block;
+        }
+
+        .helper-text {
+            margin-top: 0.2rem;
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        body.logged-in .helper-text {
+            display: none;
+        }
+
+        .submit-row {
+            margin-top: 0.75rem;
+        }
+
+        .btn-primary {
+            width: 100%;
+            border-radius: 999px;
+            border: none;
+            padding: 0.85rem 1.2rem;
+            font-size: 0.97rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            background: linear-gradient(135deg, #0ea5e9, var(--primary-color));
+            color: #f9fafb;
+            box-shadow: 0 14px 30px -15px rgba(37, 99, 235, 0.9);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+        }
+
+        .btn-primary span.icon {
+            font-size: 1rem;
+            transform: translateX(-2px);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 34px -18px rgba(37, 99, 235, 1);
+            filter: brightness(1.02);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+            box-shadow: 0 12px 28px -18px rgba(15, 23, 42, 0.9);
+            filter: brightness(0.99);
+        }
+
+        .btn-primary:disabled {
+            cursor: default;
+            opacity: 0.8;
+            box-shadow: none;
+        }
+
+        .login-meta {
+            margin-top: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            color: #9ca3af;
+        }
+
+        .login-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        body.logged-in .login-meta {
+            display: none;
+        }
+
+        .badge {
+            padding: 0.1rem 0.45rem;
+            border-radius: 999px;
+            border: 1px solid rgba(156, 163, 175, 0.7);
+            font-size: 0.74rem;
+            color: #4b5563;
+            background: linear-gradient(135deg, #f9fafb, #e5e7eb);
+        }
+
+        .footer-note {
+            margin-top: 2.4rem;
+            font-size: 0.8rem;
+            color: #9ca3af;
+            text-align: center;
+        }
+
+        .footer-note span {
+            color: #6b7280;
+        }
+
+        body.logged-in .footer-note {
+            display: none;
+        }
+
+        .personnel-section {
+            margin-top: 0.75rem;
+            padding-top: 0;
+            border-top: none;
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 80px);
+        }
+
+        .personnel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.75rem;
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #f9fafb;
+        }
+
+        .personnel-search {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.45rem 0.95rem;
+            border-radius: 999px;
+            background-color: #ffffff;
+            border: 1px solid #d1d5db;
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+            transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+        }
+
+        .personnel-search span.icon {
+            font-size: 1rem;
+            color: #6b7280;
+        }
+
+        .personnel-search input {
+            border: none;
+            background: transparent;
+            outline: none;
+            color: #111827;
+            font-size: 0.9rem;
+            width: 230px;
+        }
+
+        .personnel-search input::placeholder {
+            color: #9ca3af;
+        }
+
+        .personnel-search:focus-within {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.15), 0 1px 2px rgba(15, 23, 42, 0.08);
+            background-color: #f9fafb;
+        }
+
+        .personnel-search button.clear-btn {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+            font-size: 0.9rem;
+            color: #9ca3af;
+            display: none;
+        }
+
+        .personnel-search button.clear-btn.visible {
+            display: inline-flex;
+        }
+
+        .personnel-header h3 {
+            margin: 0;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        body.logged-in .personnel-header h3 {
+            color: #111827;
+        }
+
+        .personnel-header small {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        body.logged-in .personnel-header small {
+            color: #6b7280;
+        }
+
+        .tag-soft {
+            display: none;
+        }
+
+        .personnel-table-wrapper {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow: auto;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+            background-color: #ffffff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.86rem;
+        }
+
+        thead {
+            background-color: #f9fafb;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        th,
+        td {
+            padding: 0.6rem 0.75rem;
+            border-bottom: 1px solid #f3f4f6;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        th {
+            font-weight: 600;
+            color: #4b5563;
+        }
+
+        td {
+            color: #374151;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+
+        .cell-muted {
+            color: #9ca3af;
+            font-size: 0.78rem;
+        }
+
+        .location-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.1rem 0.55rem;
+            border-radius: 999px;
+            background-color: #eff6ff;
+            color: #1d4ed8;
+            font-size: 0.78rem;
+        }
+
+        .location-pill::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background-color: #1d4ed8;
+        }
+
+        .status-text {
+            margin-top: 0.35rem;
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        .status-text strong {
+            color: #111827;
+        }
+
+        .state-message {
+            padding: 0.9rem 0.75rem;
+            font-size: 0.82rem;
+            color: #6b7280;
+        }
+
+        .state-message.error {
+            color: #b91c1c;
+        }
+
+        .empty-state {
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        .empty-state-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state-title {
+            margin: 0 0 0.3rem 0;
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .empty-state-subtitle {
+            margin: 0;
+            font-size: 0.82rem;
+            color: #6b7280;
+        }
+
+        .action-cell {
+            text-align: left;
+        }
+
+        .action-button {
+            border-radius: 999px;
+            border: 1px solid #d1d5db;
+            padding: 0.25rem 0.7rem;
+            font-size: 0.78rem;
+            font-family: inherit;
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            color: #1d4ed8;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .action-button:hover {
+            border-color: #93c5fd;
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+        }
+
+        .action-button:active {
+            transform: translateY(1px);
+        }
+
+        .action-button span.icon {
+            font-size: 0.9rem;
+        }
+
+        .detail-card {
+            margin-top: 0.9rem;
+            padding: 0.8rem 0.9rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+            background-color: #f9fafb;
+            font-size: 0.86rem;
+        }
+
+        .detail-card-title {
+            margin: 0 0 0.4rem 0;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.25rem 1.5rem;
+        }
+
+        .detail-item-label {
+            font-size: 0.78rem;
+            color: #6b7280;
+        }
+
+        .detail-item-value {
+            font-size: 0.86rem;
+            color: #111827;
+        }
+
+        .detail-helper {
+            margin-top: 0.35rem;
+            font-size: 0.78rem;
+            color: #6b7280;
+        }
+
+        @media (max-width: 480px) {
+            .personnel-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            th:nth-child(1),
+            td:nth-child(1) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .auth-shell {
+                grid-template-columns: minmax(0, 1fr);
+                max-width: 480px;
+            }
+
+            .brand-pane {
+                display: none;
+            }
+
+            .auth-pane {
+                padding: 2.25rem 1.8rem 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.9rem;
+            }
+
+            .auth-pane {
+                padding: 2rem 1.5rem 1.9rem;
+            }
+
+            .auth-header h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-shell">
+        <aside class="brand-pane">
+            <div>
+                <div class="brand-header">
+                    <img class="brand-logo" src="https://foumanchimie.com/wp-content/uploads/2023/11/foumanchimie-persian-2-300x74.png" alt="لوگوی فومن شیمی">
+                    <div class="brand-title">
+                        <span>FOUMAN CHIMIE</span>
+                        <span>سامانه یکپارچه مدیریت آموزش</span>
+                    </div>
+                </div>
+
+                <div class="hero-copy">
+                    <h1>ورود امن به سامانه نیازسنجی آموزشی</h1>
+                    <p>
+                        لطفاً با نام کاربری سازمانی خود وارد شوید تا به فرم‌های نیازسنجی کارکنان، واحدها و منابع انسانی
+                        دسترسی داشته باشید.
+                    </p>
+
+                    <div class="hero-meta">
+                        <div>
+                            <div class="mock-info">
+                                <span class="mock-dot"></span>
+                                <span>حالت نمایشی (Demo)</span>
+                            </div>
+
+                            <div class="mock-cred">
+                                <span>user: example@caspian.com</span>
+                                <span>pass: 1234</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="display:block;">اطلاعات ورود فقط جهت تست رابط کاربری است.</span>
+                            <span style="display:block;">هیچ داده واقعی ذخیره نمی‌شود.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-note">
+                <span>© کلیه حقوق این سامانه برای شرکت فومن شیمی محفوظ است.</span>
+            </div>
+        </aside>
+
+        <main class="auth-pane">
+            <header class="auth-header">
+                <h2>ورود به سامانه</h2>
+                <p>برای ادامه، ایمیل سازمانی و گذرواژه خود را وارد کنید.</p>
+            </header>
+
+            <form id="login-form" novalidate>
+                <div class="form-grid">
+                    <div>
+                        <label for="username">ایمیل سازمانی</label>
+                        <div class="input-wrapper">
+                            <span class="input-prefix">user@</span>
+                            <input
+                                type="email"
+                                id="username"
+                                name="username"
+                                class="input-with-prefix"
+                                placeholder="caspian.com"
+                                autocomplete="username"
+                                required
+                                inputmode="email"
+                            >
+                        </div>
+                        <div class="helper-text">برای تست، از آدرس کامل <span dir="ltr">example@caspian.com</span> استفاده کنید.</div>
+                    </div>
+
+                    <div>
+                        <label for="password">گذرواژه</label>
+                        <div class="input-wrapper">
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="گذرواژه خود را وارد کنید"
+                                autocomplete="current-password"
+                                required
+                                minlength="3"
+                            >
+                            <button type="button" class="password-toggle" id="toggle-password">نمایش</button>
+                        </div>
+                    </div>
+
+                    <div class="error-message" id="error-message">
+                        نام کاربری یا گذرواژه نادرست است. لطفاً دوباره تلاش کنید.
+                    </div>
+
+                    <div class="submit-row">
+                        <button type="submit" class="btn-primary" id="submit-button">
+                            <span>ورود به سامانه</span>
+                            <span class="icon">⟵</span>
+                        </button>
+                    </div>
+
+                    <div class="login-meta">
+                        <span>
+                            <span class="badge">نسخه نمایشی</span>
+                            فقط برای استفاده داخلی واحد منابع انسانی
+                        </span>
+                        <span>در صورت بروز مشکل، با IT تماس بگیرید.</span>
+                    </div>
+                </div>
+            </form>
+
+            <section id="personnel-section" class="personnel-section" style="display: none;">
+                <div class="personnel-header">
+                    <div>
+                        <h3>فهرست پرسنل واجد نیازسنجی آموزشی</h3>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:0.6rem;">
+                        <div class="personnel-search">
+                            <span class="icon">🔍</span>
+                            <input
+                                type="search"
+                                id="personnel-search-input"
+                                placeholder="جست‌وجو بر اساس نام، کد پرسنلی یا شغل..."
+                                autocomplete="off"
+                            >
+                            <button type="button" id="personnel-search-clear" class="clear-btn">✕</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="personnel-table-wrapper">
+                    <div id="personnel-loading" class="state-message">
+                        در حال دریافت فهرست پرسنل از سرور...
+                    </div>
+                    <div id="personnel-error" class="state-message error" style="display: none;">
+                        خطا در دریافت اطلاعات از سرور. لطفاً چند لحظه دیگر دوباره تلاش کنید.
+                    </div>
+                    <div id="personnel-empty" class="empty-state" style="display: none;">
+                        <div class="empty-state-icon">📄</div>
+                        <p class="empty-state-title">موردی مطابق جست‌وجوی شما پیدا نشد.</p>
+                        <p class="empty-state-subtitle">عبارت جست‌وجو را ویرایش کنید یا فیلتر را خالی بگذارید تا همه پرسنل نمایش داده شوند.</p>
+                    </div>
+                    <table id="personnel-table" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>کد پرسنلی</th>
+                                <th>نام و نام خانوادگی</th>
+                                <th>کد شغل</th>
+                                <th>محل خدمت</th>
+                                <th>عنوان شغل</th>
+                                <th>اقدام</th>
+                            </tr>
+                        </thead>
+                        <tbody id="personnel-tbody">
+                            <!-- Rows will be injected dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="person-detail" class="detail-card" style="display: none;">
+                    <p class="detail-card-title" id="detail-title">تحلیل پرسنل انتخاب‌شده</p>
+                    <div class="detail-grid">
+                        <div>
+                            <div class="detail-item-label">کد پرسنلی</div>
+                            <div class="detail-item-value" id="detail-personnel-id">—</div>
+                        </div>
+                        <div>
+                            <div class="detail-item-label">نام و نام خانوادگی</div>
+                            <div class="detail-item-value" id="detail-name">—</div>
+                        </div>
+                        <div>
+                            <div class="detail-item-label">کد شغل</div>
+                            <div class="detail-item-value" id="detail-job-id">—</div>
+                        </div>
+                        <div>
+                            <div class="detail-item-label">عنوان شغل</div>
+                            <div class="detail-item-value" id="detail-job-title">—</div>
+                        </div>
+                        <div>
+                            <div class="detail-item-label">محل خدمت</div>
+                            <div class="detail-item-value" id="detail-location">—</div>
+                        </div>
+                    </div>
+                    <p class="detail-helper" id="detail-helper">
+                        این بخش می‌تواند در نسخه‌های بعدی به گزارش کامل نیازسنجی، سوابق دوره‌های آموزشی و پیشنهادهای هوشمند آموزش متصل شود.
+                    </p>
+                </div>
+            </section>
+
+            <div class="footer-note">
+                <span>این صفحه ورود صرفاً با داده‌های ساختگی (Mock) احراز هویت می‌کند؛ فهرست پرسنل از سرویس واقعی خوانده می‌شود.</span>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        (function () {
+            var form = document.getElementById('login-form');
+            var usernameInput = document.getElementById('username');
+            var passwordInput = document.getElementById('password');
+            var errorBox = document.getElementById('error-message');
+            var submitButton = document.getElementById('submit-button');
+            var togglePassword = document.getElementById('toggle-password');
+            var personnelSection = document.getElementById('personnel-section');
+            var personnelTable = document.getElementById('personnel-table');
+            var personnelTbody = document.getElementById('personnel-tbody');
+            var personnelLoading = document.getElementById('personnel-loading');
+            var personnelError = document.getElementById('personnel-error');
+            var personnelEmpty = document.getElementById('personnel-empty');
+            var personnelSearchInput = document.getElementById('personnel-search-input');
+            var personnelSearchClear = document.getElementById('personnel-search-clear');
+
+            var VALID_USER = 'example@caspian.com';
+            var VALID_PASS = '1234';
+            var API_URL = 'https://n8n.rymon-afzar.ir/webhook/api/hr/employee/all';
+            var allPersonnelRows = [];
+            var searchTimeoutId = null;
+            var AUTH_KEY = 'hr-ai-auth';
+
+            function isLoggedIn() {
+                try {
+                    return window.localStorage.getItem(AUTH_KEY) === '1';
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            function setLoggedIn() {
+                try {
+                    window.localStorage.setItem(AUTH_KEY, '1');
+                } catch (e) {
+                    // ignore storage errors
+                }
+            }
+
+            function showError(message) {
+                if (message) {
+                    errorBox.textContent = message;
+                }
+                errorBox.classList.add('error-visible');
+            }
+
+            function hideError() {
+                errorBox.classList.remove('error-visible');
+            }
+
+            function showPersonnelSection() {
+                form.style.display = 'none';
+                personnelSection.style.display = 'block';
+                document.body.classList.add('logged-in');
+            }
+
+            function setLoadingState(isLoading) {
+                personnelLoading.style.display = isLoading ? 'block' : 'none';
+            }
+
+            function setErrorState(message) {
+                if (message) {
+                    personnelError.textContent = message;
+                }
+                personnelError.style.display = 'block';
+                if (personnelEmpty) {
+                    personnelEmpty.style.display = 'none';
+                }
+            }
+
+            function clearErrorState() {
+                personnelError.style.display = 'none';
+            }
+
+            function normalizeData(data) {
+                if (!data) return [];
+                if (Array.isArray(data)) return data;
+                // If API returns a single object
+                return [data];
+            }
+
+            function renderPersonnel(rows) {
+                personnelTbody.innerHTML = '';
+
+                if (!rows.length) {
+                    setLoadingState(false);
+                    if (personnelEmpty) {
+                        personnelEmpty.style.display = 'block';
+                    }
+                    personnelTable.style.display = 'none';
+                    return;
+                }
+
+                if (personnelEmpty) {
+                    personnelEmpty.style.display = 'none';
+                }
+
+                rows.forEach(function (item, index) {
+                    var tr = document.createElement('tr');
+
+                    var rowNumber = item.row_number || index + 1;
+                    var personnelId = item.personnelId || '—';
+                    var name = item.Name || '—';
+                    var jobId = item.jobId || '—';
+                    var location = item.location || '—';
+                    var jobTitle = item.jobTilte || item.jobTitle || '—';
+
+                    tr.innerHTML =
+                        '<td class="cell-muted">' + rowNumber + '</td>' +
+                        '<td>' + personnelId + '</td>' +
+                        '<td>' + name + '</td>' +
+                        '<td class="cell-muted">' + jobId + '</td>' +
+                        '<td><span class="location-pill">' + location + '</span></td>' +
+                        '<td>' + jobTitle + '</td>' +
+                        '<td class="action-cell">' +
+                            '<button type="button" class="action-button" ' +
+                                'data-personnel-id="' + personnelId + '" ' +
+                                'data-name="' + name + '" ' +
+                                'data-job-id="' + jobId + '" ' +
+                                'data-location="' + location + '" ' +
+                                'data-job-title="' + jobTitle + '"' +
+                            '>' +
+                                '<span class="icon">📊</span>' +
+                                '<span>مشاهده تحلیل</span>' +
+                            '</button>' +
+                        '</td>';
+
+                    personnelTbody.appendChild(tr);
+                });
+
+                setLoadingState(false);
+                clearErrorState();
+                personnelTable.style.display = 'table';
+            }
+
+            function goToPersonDetail(button) {
+                var personnelId = button.getAttribute('data-personnel-id') || '';
+                var name = button.getAttribute('data-name') || '';
+                var jobId = button.getAttribute('data-job-id') || '';
+                var location = button.getAttribute('data-location') || '';
+                var jobTitle = button.getAttribute('data-job-title') || '';
+
+                var query =
+                    '?personnelId=' + encodeURIComponent(personnelId) +
+                    '&name=' + encodeURIComponent(name) +
+                    '&jobId=' + encodeURIComponent(jobId) +
+                    '&location=' + encodeURIComponent(location) +
+                    '&jobTitle=' + encodeURIComponent(jobTitle);
+
+                window.location.href = 'analysis-detail.htm' + query;
+            }
+
+            function fetchPersonnel() {
+                setLoadingState(true);
+                clearErrorState();
+                personnelTable.style.display = 'none';
+
+                fetch(API_URL, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(function (response) {
+                    if (!response.ok) {
+                        throw new Error('پاسخ نامعتبر از سرور (' + response.status + ')');
+                    }
+                    return response.json();
+                }).then(function (data) {
+                    allPersonnelRows = normalizeData(data);
+                    renderPersonnel(allPersonnelRows);
+                }).catch(function () {
+                    setLoadingState(false);
+                    setErrorState('خطا در اتصال به سرویس تحلیل منابع انسانی. لطفاً اتصال شبکه را بررسی کرده و دوباره تلاش کنید.');
+                });
+            }
+
+            function applySearchFilter() {
+                var term = (personnelSearchInput.value || '').toString().trim().toLowerCase();
+
+                if (personnelSearchClear) {
+                    if (term) {
+                        personnelSearchClear.classList.add('visible');
+                    } else {
+                        personnelSearchClear.classList.remove('visible');
+                    }
+                }
+
+                if (!term) {
+                    renderPersonnel(allPersonnelRows);
+                    return;
+                }
+
+                var filtered = allPersonnelRows.filter(function (item) {
+                    var personnelId = (item.personnelId || '').toString().toLowerCase();
+                    var name = (item.Name || '').toString().toLowerCase();
+                    var jobTitle = (item.jobTilte || item.jobTitle || '').toString().toLowerCase();
+                    var location = (item.location || '').toString().toLowerCase();
+                    var jobId = (item.jobId || '').toString().toLowerCase();
+
+                    return (
+                        personnelId.indexOf(term) !== -1 ||
+                        name.indexOf(term) !== -1 ||
+                        jobTitle.indexOf(term) !== -1 ||
+                        location.indexOf(term) !== -1 ||
+                        jobId.indexOf(term) !== -1
+                    );
+                });
+
+                renderPersonnel(filtered);
+            }
+
+            personnelTbody.addEventListener('click', function (event) {
+                var target = event.target;
+                if (target.classList.contains('action-button')) {
+                    goToPersonDetail(target);
+                } else if (target.closest && target.closest('.action-button')) {
+                    goToPersonDetail(target.closest('.action-button'));
+                }
+            });
+
+            if (personnelSearchInput) {
+                personnelSearchInput.addEventListener('input', function () {
+                    if (searchTimeoutId) {
+                        clearTimeout(searchTimeoutId);
+                    }
+                    searchTimeoutId = setTimeout(applySearchFilter, 200);
+                });
+            }
+
+            if (personnelSearchClear) {
+                personnelSearchClear.addEventListener('click', function () {
+                    personnelSearchInput.value = '';
+                    personnelSearchClear.classList.remove('visible');
+                    applySearchFilter();
+                    personnelSearchInput.focus();
+                });
+            }
+
+            togglePassword.addEventListener('click', function () {
+                var type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                togglePassword.textContent = type === 'password' ? 'نمایش' : 'مخفی کردن';
+            });
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                hideError();
+
+                var enteredUser = usernameInput.value.trim();
+                var enteredPass = passwordInput.value;
+
+                if (!enteredUser || !enteredPass) {
+                    showError('لطفاً هر دو فیلد نام کاربری و گذرواژه را تکمیل کنید.');
+                    return;
+                }
+
+                submitButton.disabled = true;
+
+                window.setTimeout(function () {
+                    if (enteredUser.toLowerCase() === VALID_USER && enteredPass === VALID_PASS) {
+                        // On successful mock login, remember auth state and show personnel list view
+                        setLoggedIn();
+                        showPersonnelSection();
+                        fetchPersonnel();
+                    } else {
+                        showError('نام کاربری یا گذرواژه نادرست است. لطفاً مجدداً تلاش کنید.');
+                        submitButton.disabled = false;
+                    }
+                }, 350);
+            });
+
+            usernameInput.addEventListener('input', hideError);
+            passwordInput.addEventListener('input', hideError);
+
+            // If user is already authenticated, skip login form and go directly to personnel list
+            if (isLoggedIn()) {
+                showPersonnelSection();
+                fetchPersonnel();
+            }
+        })();
+    </script>
+
+</body>
+</html>

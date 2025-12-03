@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سامانه نیازسنجی آموزشی</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Brand palette matched to Fouman Chimie Persian logo */
+            --primary-color: #0066B3; /* Brand blue */
+            --primary-hover: #005190;
+            --secondary-color: #0F172A; /* Deep slate for headings */
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --background-light: #f5f7fb;
+            --card-background: #ffffff;
+            --border-color: #dbe3ef;
+            --border-hover: #c4d2e6;
+            --focus-ring: rgba(0, 102, 179, 0.28);
+            --text-primary: #15243a;
+            --text-secondary: #475569;
+            --text-muted: #90a4b8;
+            --spacing: 1.5rem;
+            --radius: 10px;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Base styles and RTL setup */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', 'Tahoma', 'B Roya', 'IRANSans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.75;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            margin: 0;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Structure and Layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            background-color: var(--card-background);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 3rem;
+            margin-bottom: 3rem;
+            border-bottom: 3px solid var(--primary-color);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+
+        .brand-logo {
+            display: block;
+            margin: 0 auto 1.5rem auto;
+            height: 60px;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 0 1rem 0;
+            letter-spacing: -0.02em;
+        }
+
+        header p {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Main Content Grid */
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .nav-card {
+            position: relative;
+            padding: 2.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+            border-radius: var(--radius) var(--radius) 0 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-card:hover::before {
+            opacity: 1;
+        }
+
+        .nav-card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            box-shadow: 0 4px 12px rgba(0, 102, 179, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .nav-card:hover .nav-card-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 20px rgba(0, 102, 179, 0.3);
+        }
+
+        .nav-card-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 0 1rem 0;
+            text-align: center;
+        }
+
+        .nav-card-description {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin: 0 0 2rem 0;
+            text-align: center;
+        }
+
+        .nav-card-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: inherit;
+            text-align: center;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-card-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .nav-card-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .nav-card-button:hover {
+            background-color: var(--primary-hover);
+            box-shadow: var(--shadow);
+            transform: translateY(-2px);
+        }
+
+        .nav-card-button:active {
+            transform: translateY(0);
+        }
+
+        .nav-card-button::after {
+            content: '→';
+            margin-right: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-card:hover .nav-card-button::after {
+            transform: translateX(-5px);
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 2rem 0 0 0;
+            margin-top: 3rem;
+            border-top: 2px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.7;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+                border-radius: 12px;
+            }
+
+            header h1 {
+                font-size: 1.75rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .nav-card {
+                padding: 2rem;
+            }
+
+            .nav-card-title {
+                font-size: 1.5rem;
+            }
+
+            .nav-card-description {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .container {
+                padding: 3rem;
+            }
+            
+            header h1 {
+                font-size: 2.75rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-card {
+            animation: fadeInUp 0.6s ease backwards;
+        }
+
+        .nav-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .nav-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <img class="brand-logo" src="https://foumanchimie.com/wp-content/uploads/2023/11/foumanchimie-persian-2-300x74.png" alt="لوگوی فومن شیمی">
+            <h1>نیازسنجی آموزشی</h1>
+            <p>از این صفحه می‌توانید به فرم‌های نیاز آموزشیِ کارکنان، واحدها و منابع انسانی دسترسی پیدا کنید و درخواست‌ها را ثبت و پیگیری نمایید.</p>
+        </header>
+
+        <main class="main-content">
+            <a href="employee.htm" class="nav-card">
+                <div class="nav-card-icon">
+                    👤
+                </div>
+                <h2 class="nav-card-title">بخش کارکنان</h2>
+                <p class="nav-card-description">
+                    خوداظهاری نیازهای آموزشی برای بهبود عملکرد؛ توسط خودِ کارکنان تکمیل می‌شود.
+                </p>
+                <button type="button" class="nav-card-button">ورود به بخش کارکنان</button>
+            </a>
+
+            <a href="department.htm" class="nav-card">
+                <div class="nav-card-icon">
+                    🏢
+                </div>
+                <h2 class="nav-card-title">بخش واحدها</h2>
+                <p class="nav-card-description">
+                    نیازسنجی سالانه و تعیین دوره‌های موردنیاز هر واحد؛ توسط مدیران واحد تکمیل می‌شود.
+                </p>
+                <button type="button" class="nav-card-button">ورود به بخش دپارتمان‌ها</button>
+            </a>
+
+            <a href="hr.htm" class="nav-card">
+                <div class="nav-card-icon">
+                    📋
+                </div>
+                <h2 class="nav-card-title">بخش منابع انسانی</h2>
+                <p class="nav-card-description">
+                    پیشنهاد دوره‌های آموزشی برای ارتقای شایستگی‌های شغلی و همسویی با اهداف استراتژیک سازمان؛ توسط مسئول آموزش منابع انسانی تکمیل می‌شود.
+                </p>
+                <button type="button" class="nav-card-button">ورود به فرم منابع انسانی</button>
+            </a>
+            
+            <a href="analysis.htm" class="nav-card">
+                <div class="nav-card-icon">
+                    📊
+                </div>
+                <h2 class="nav-card-title">تحلیل نیازسنجی</h2>
+                <p class="nav-card-description">
+                    مشاهده و تحلیل نتایج نیازسنجی آموزشی کارکنان و واحدها در یک نمای متمرکز.
+                </p>
+                <button type="button" class="nav-card-button">ورود به صفحه تحلیل</button>
+            </a>
+        </main>
+        
+        <footer>
+            <p>این سیستم توسط شرکت فومن شیمی برای مدیریت منابع انسانی تهیه شده است. تمام حقوق محفوظ است.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
