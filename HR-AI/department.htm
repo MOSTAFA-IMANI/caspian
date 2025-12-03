@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فرم نیازسنجی آموزشی سالانه</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Brand palette matched to Fouman Chimie Persian logo */
+            --primary-color: #0066B3; /* Brand blue */
+            --primary-hover: #005190;
+            --secondary-color: #0F172A; /* Deep slate for headings */
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --background-light: #f5f7fb;
+            --card-background: #ffffff;
+            --border-color: #dbe3ef;
+            --border-hover: #c4d2e6;
+            --focus-ring: rgba(0, 102, 179, 0.28);
+            --text-primary: #15243a;
+            --text-secondary: #475569;
+            --text-muted: #90a4b8;
+            --spacing: 1.5rem;
+            --radius: 10px;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Base styles and RTL setup */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', 'Tahoma', 'B Roya', 'IRANSans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.75;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            margin: 0;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Structure and Layout */
+        .container {
+            width: 100%;
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            background-color: var(--card-background);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        header {
+            padding-bottom: 2rem;
+            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            right: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+        }
+
+        .brand-logo {
+            display: block;
+            margin: 0 auto 1rem auto;
+            height: 52px;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 0.75rem 0;
+            letter-spacing: -0.02em;
+        }
+
+        header p {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        header p:first-of-type {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        main {
+            padding: 0;
+        }
+
+        /* Form elements and Accessibility */
+        .form-group {
+            margin-bottom: 1.75rem;
+            padding: 0;
+            transition: all 0.2s ease;
+        }
+
+        .form-group:focus-within {
+            transform: translateX(-2px);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.625rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            letter-spacing: 0.01em;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            font-family: inherit;
+            text-align: right;
+            background-color: var(--card-background);
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231e293b' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 1rem center;
+            padding-left: 2.5rem;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        input[type="text"]:hover,
+        input[type="number"]:hover,
+        textarea:hover,
+        select:hover {
+            border-color: var(--border-hover);
+        }
+
+        select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px var(--focus-ring);
+            outline: none;
+            background-color: #ffffff;
+        }
+
+        select option {
+            padding: 0.5rem;
+            background-color: white;
+        }
+
+        select:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        input[type="file"] {
+            padding: 0.75rem;
+            cursor: pointer;
+            background-color: var(--background-light);
+        }
+
+        input[type="file"]:hover {
+            background-color: #f1f5f9;
+        }
+
+        .form-text {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        input[type="file"]:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px var(--focus-ring);
+            outline: none;
+            background-color: #ffffff;
+        }
+
+        input[type="text"]::placeholder,
+        textarea::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.7;
+        }
+
+        /* Checkbox and Radio Groups */
+        .choice-group {
+            padding: 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            background-color: var(--background-light);
+            transition: all 0.2s ease;
+        }
+
+        .choice-group:hover {
+            border-color: var(--border-hover);
+        }
+
+        .choice-group legend {
+            font-weight: 700;
+            padding: 0 0.75rem;
+            color: var(--primary-color);
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .choice-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding: 0.625rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+        }
+
+        .choice-item:hover {
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+
+        .choice-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .choice-item input[type="radio"],
+        .choice-item input[type="checkbox"] {
+            /* Hides default radio/checkbox */
+            opacity: 0;
+            width: 0;
+            height: 0;
+            margin: 0;
+        }
+
+        .choice-item label {
+            /* Custom checkmark area */
+            position: relative;
+            padding-right: 32px;
+            margin-bottom: 0;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 1rem;
+            user-select: none;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .choice-item label::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 22px;
+            height: 22px;
+            border: 2.5px solid var(--border-color);
+            background-color: var(--card-background);
+            border-radius: 5px; /* for checkbox */
+            transition: all 0.2s ease;
+        }
+
+        .choice-item input[type="radio"] + label::before {
+            border-radius: 50%; /* for radio */
+        }
+
+        .choice-item input[type="checkbox"]:checked + label::before,
+        .choice-item input[type="radio"]:checked + label::before {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-width: 2.5px;
+        }
+
+        .choice-item input:checked + label::after {
+            content: '✓'; /* Checkmark icon */
+            position: absolute;
+            top: 50%;
+            right: 4px;
+            transform: translateY(-50%);
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--card-background);
+            line-height: 1;
+        }
+
+        .choice-item input[type="radio"]:checked + label::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--card-background);
+            top: 50%;
+            right: 6px;
+            transform: translateY(-50%);
+        }
+        
+        /* Focus state for accessibility */
+        .choice-item input:focus + label::before {
+            box-shadow: 0 0 0 4px var(--focus-ring);
+        }
+
+        /* Other Skills Container */
+        .other-skills-container {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            animation: slideDown 0.3s ease;
+        }
+
+        .other-skills-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .other-skills-header svg {
+            flex-shrink: 0;
+        }
+
+        .other-skills-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .other-skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            position: relative;
+        }
+
+        .other-skill-item:first-child .remove-skill-btn {
+            display: none !important;
+        }
+
+        .skill-other-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.2s ease;
+            background-color: white;
+        }
+
+        .skill-other-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px var(--focus-ring);
+            outline: none;
+        }
+
+        .remove-skill-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            border: 2px solid var(--danger-color);
+            border-radius: var(--radius);
+            background-color: white;
+            color: var(--danger-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .remove-skill-btn:hover {
+            background-color: var(--danger-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .remove-skill-btn:active {
+            transform: scale(0.95);
+        }
+
+        .add-skill-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius);
+            background-color: white;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .add-skill-btn:hover {
+            border-color: var(--primary-color);
+            background-color: var(--background-light);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .add-skill-btn:active {
+            transform: translateY(0);
+        }
+
+        .add-skill-btn svg {
+            transition: transform 0.2s ease;
+        }
+
+        .add-skill-btn:hover svg {
+            transform: rotate(90deg);
+        }
+
+        /* Validation UI */
+        .error-message {
+            color: var(--danger-color);
+            margin-top: 0.625rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: none; /* Initially hidden */
+            padding-right: 0.5rem;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        input:invalid:not(:placeholder-shown),
+        textarea:invalid:not(:placeholder-shown) {
+            border-color: var(--danger-color);
+        }
+
+        .is-invalid input,
+        .is-invalid textarea {
+            border-color: var(--danger-color);
+        }
+
+        .is-invalid .error-message {
+            display: block;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 1.75rem;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: inherit;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            border-radius: var(--radius);
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            box-shadow: var(--shadow);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #475569;
+            box-shadow: var(--shadow);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(0);
+        }
+
+        .btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px var(--focus-ring), var(--shadow);
+        }
+
+        .form-actions {
+            margin-top: 2rem;
+        }
+
+        #submit-btn {
+            width: 100%;
+            max-width: 420px;
+            display: block;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            padding: 1.25rem 2.75rem;
+            min-height: 56px;
+        }
+
+        #submit-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* Priority/Ranking - New Card-based Design */
+        .priority-container-new {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .priority-card {
+            position: relative;
+            padding: 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .priority-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow);
+            transform: translateY(-2px);
+        }
+
+        .priority-card.has-priority {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+        }
+
+        .priority-card-header {
+            margin-bottom: 1.25rem;
+            text-align: center;
+        }
+
+        .priority-card-title {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .priority-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .priority-btn {
+            width: 56px;
+            height: 56px;
+            padding: 0;
+            border: 2.5px solid var(--border-color);
+            border-radius: 12px;
+            background-color: white;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: inherit;
+            position: relative;
+        }
+
+        .priority-btn:hover {
+            border-color: var(--primary-color);
+            background-color: var(--background-light);
+            transform: scale(1.05);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .priority-btn.selected {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .priority-btn.selected::after {
+            content: '✓';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--success-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .priority-selected-indicator {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(-5px);
+            transition: all 0.2s ease;
+        }
+
+        .priority-card.has-priority .priority-selected-indicator {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .priority-container-new {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Course Links Container */
+        .course-links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .course-links-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .course-link-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .course-link-item:first-child .remove-link-btn {
+            display: none !important;
+        }
+
+        .course-link-input-wrapper {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .link-icon {
+            position: absolute;
+            right: 1rem;
+            color: var(--text-muted);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .course-link-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 3rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.2s ease;
+            background-color: white;
+            color: var(--text-primary);
+            direction: ltr;
+            text-align: left;
+        }
+
+        .course-link-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px var(--focus-ring);
+            outline: none;
+        }
+
+        .course-link-input:valid {
+            border-color: var(--success-color);
+        }
+
+        .course-link-input:invalid:not(:placeholder-shown) {
+            border-color: var(--danger-color);
+        }
+
+        .remove-link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            border: 2px solid var(--danger-color);
+            border-radius: var(--radius);
+            background-color: white;
+            color: var(--danger-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .remove-link-btn:hover {
+            background-color: var(--danger-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .remove-link-btn:active {
+            transform: scale(0.95);
+        }
+
+        .add-link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            margin-top: 0.5rem;
+            padding: 0.75rem 1rem;
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius);
+            background-color: white;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .add-link-btn:hover {
+            border-color: var(--primary-color);
+            background-color: var(--background-light);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .add-link-btn:active {
+            transform: translateY(0);
+        }
+
+        .add-link-btn svg {
+            transition: transform 0.2s ease;
+        }
+
+        .add-link-btn:hover svg {
+            transform: rotate(90deg);
+        }
+
+        /* Suggested Courses (repeatable) */
+        .suggested-courses-container {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+
+        .suggested-courses-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .suggested-courses-title {
+            margin: 0;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .suggested-courses-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .suggested-course-item {
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius);
+            padding: 1rem;
+            background-color: #fff;
+        }
+
+        .suggested-course-item-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+        .suggested-course-item-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        .suggested-course-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            background: var(--primary-color);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .suggested-course-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .item-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .suggested-course-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 0.5rem;
+        }
+
+        .suggested-course-item:first-child .remove-link-btn {
+            display: none !important;
+        }
+
+        /* Jalali date picker (simple selects) */
+        .jalali-date-picker {
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            background: #fff;
+            padding: 0.75rem;
+        }
+        .jalali-date-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .jalali-date-hint {
+            margin-top: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Personnel ID Chips */
+        .suggested-chips-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            min-height: 2rem;
+        }
+
+        .suggested-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.75rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .suggested-chip span {
+            user-select: none;
+        }
+
+        .suggested-chip .remove-chip {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            line-height: 1;
+            padding: 0;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+
+        .suggested-chip .remove-chip:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* PDF Preview and Fallback UI */
+        #pdf-preview-container {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, #fff9f0 0%, #fef3e8 100%);
+            display: none;
+            transition: all 0.3s ease;
+        }
+
+        #pdf-preview-container:hover {
+            border-color: var(--primary-color);
+        }
+
+        #pdf-preview-text {
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+        
+        #pdf-preview-text span {
+            display: inline-block;
+            padding: 0.5rem 0.75rem;
+            margin: 0.25rem;
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+        
+        #pdf-preview-text span:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        /* Modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .modal-content {
+            background-color: var(--card-background);
+            margin: 10% auto;
+            padding: 2rem;
+            border: none;
+            width: 90%;
+            max-width: 550px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            animation: slideUp 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-content h3 {
+            margin: 0 0 1rem 0;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .modal-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-btn {
+            color: var(--text-muted);
+            float: left;
+            font-size: 32px;
+            font-weight: bold;
+            line-height: 1;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: var(--text-primary);
+            background-color: var(--background-light);
+        }
+
+        /* Coming Soon State */
+        .coming-soon-container {
+            margin: 2rem 0;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius);
+            text-align: center;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .coming-soon-content {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .coming-soon-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            color: var(--primary-color);
+            opacity: 0.7;
+        }
+
+        .coming-soon-content h2 {
+            color: var(--text-primary);
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0 0 1rem 0;
+        }
+
+        .coming-soon-content p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin: 0.75rem 0;
+        }
+
+        .coming-soon-note {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        #main-form-fields {
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 1.5rem 0 0 0;
+            margin-top: 2.5rem;
+            border-top: 2px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.7;
+        }
+
+        /* Responsive design (mobile first) */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+                border-radius: 12px;
+            }
+
+            header h1 {
+                font-size: 1.75rem;
+            }
+
+            header p {
+                font-size: 0.95rem;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+
+            .priority-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .priority-item input[type="number"] {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .container {
+                padding: 2.5rem;
+            }
+            
+            header h1 {
+                font-size: 2.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <img class="brand-logo" src="https://foumanchimie.com/wp-content/uploads/2023/11/foumanchimie-persian-2-300x74.png" alt="لوگوی فومن شیمی">
+            <h1>فرم نیازسنجی آموزشی سالانه</h1>
+            <p>  </p>
+            <p>لطفاً اطلاعات مربوط به نیازسنجی آموزشی را با دقت تکمیل کنید.</p>
+        </header>
+
+        <main>
+            <form id="training-needs-form" aria-label="فرم نیازسنجی آموزشی سالانه" novalidate>
+                <div class="form-group" id="group-fullname">
+                    <label for="full-name">نام و نام خانوادگی:</label>
+                    <input type="text" id="full-name" name="full-name" required aria-required="true" placeholder="نام خود را وارد کنید">
+                    <div class="error-message">لطفاً نام و نام خانوادگی را وارد کنید.</div>
+                </div>
+
+                <div class="form-group" id="group-department">
+                    <label for="department">واحد سازمانی <span style="color: var(--danger-color);">*</span></label>
+                    <select class="form-select" id="department" name="department" required aria-required="true">
+                        <option value="" selected disabled>انتخاب کنید</option>
+                    </select>
+                    <div class="error-message">لطفاً واحد سازمانی خود را انتخاب کنید.</div>
+                </div>
+
+                <!-- Main form fields (shown for all departments) -->
+                <div id="main-form-fields">
+                    
+                    <div class="form-group" id="group-objectives">
+                        <label for="objectives">اهداف کلی و جزئی:</label>
+                        <textarea id="objectives" name="objectives" rows="3" placeholder="اهداف کلی و جزئی را وارد کنید"></textarea>
+                    </div>
+
+                    <div class="form-group" id="group-expectations">
+                        <label for="expectations">انتظارات از برنامه پیاده‌سازی و آموزش:</label>
+                        <textarea id="expectations" name="expectations" rows="3" placeholder="انتظارات خود را وارد کنید"></textarea>
+                    </div>
+              
+
+                  
+
+                    
+
+                    <!-- Suggested Courses Box -->
+                    <section id="suggested-courses-section" class="suggested-courses-container" aria-label="محتوا و رئوس مطالب دوره های قابل اجرا">
+                        <div class="suggested-courses-header">
+                            <h3 class="suggested-courses-title">محتوا و رئوس مطالب دوره های قابل اجرا</h3>
+                        </div>
+                        <div id="suggested-courses-error" class="error-message" style="display: none;">حداقل یک مورد باید اضافه شود و عنوان دوره و فراگیرندگان هر مورد الزامی است.</div>
+                        <div id="suggested-courses-list" class="suggested-courses-list" role="list">
+                            <!-- Items will be injected by JS; one default item on load -->
+                        </div>
+                        <button type="button" id="add-suggested-course-btn" class="add-link-btn" aria-label="افزودن مورد جدید">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            افزودن مورد جدید
+                        </button>
+                    </section>
+                </div>
+                <!-- End of main-form-fields -->
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" id="submit-btn">
+                        ارسال 
+                        <svg style="margin-right: 8px; vertical-align: middle;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+
+            </form>
+        </main>
+        
+        <footer>
+            <p>این فرم توسط شرکت فومن شیمی برای جمع‌آوری نیازهای آموزشی داخلی تهیه شده است. تمام حقوق محفوظ است.</p>
+        </footer>
+
+    </div>
+
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" aria-label="بستن پنجره">&times;</span>
+            <h3 id="modal-title"></h3>
+            <p id="modal-message"></p>
+            <button type="button" class="btn btn-primary" onclick="document.getElementById('confirmation-modal').style.display='none'">بسیار خوب</button>
+        </div>
+    </div>
+    
+    <script src="./organization-units.js"></script>
+    <script>
+        // DEVELOPER NOTE: All strings for localization (messages, errors, labels, etc.) should be changed in the HTML or in this 'STRINGS' object if they are dynamic.
+        const STRINGS = {
+            errorRequired: 'پر کردن این فیلد اجباری است.',
+            successTitle: '✅ موفقیت آمیز',
+            successMessage: 'درخواست شما با موفقیت ثبت و ارسال شد. از همکاری شما سپاسگزاریم.',
+            errorSubmissionTitle: '❌ خطا در ارسال',
+            errorSubmissionMessage: 'خطایی در ارسال داده‌ها رخ داد. لطفاً مجدداً تلاش کنید.',
+            exportTitle: 'پیش‌نمایش داده‌های ارسالی',
+        };
+        
+        // DEVELOPER NOTE: Change this endpoint to your desired submission URL.
+        const API_URL = 'https://n8n.rymon-afzar.ir/webhook/api/hr/form/department';
+
+        const form = document.getElementById('training-needs-form');
+        const modal = document.getElementById('confirmation-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMessage = document.getElementById('modal-message');
+        const departmentSelect = document.getElementById('department');
+        const mainFormFields = document.getElementById('main-form-fields');
+        const suggestedCoursesList = document.getElementById('suggested-courses-list');
+        const suggestedCoursesError = document.getElementById('suggested-courses-error');
+        const submitBtn = document.getElementById('submit-btn');
+        const submitBtnInitialHTML = submitBtn ? submitBtn.innerHTML : '';
+
+        if (typeof populateDepartmentSelect === 'function') {
+            populateDepartmentSelect(departmentSelect);
+        }
+
+        // Form is always visible - no need for hide/show logic
+
+
+        /**
+         * Clears all existing error messages.
+         */
+        function clearAllErrors() {
+            document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+        }
+
+        /**
+         * Shows an error message for a specific element.
+         * @param {string} id The ID of the form-group or specific error-message container.
+         * @param {string} message The error message to display.
+         */
+        function showError(id, message) {
+            const container = document.getElementById(id);
+            if (container) {
+                container.classList.add('is-invalid');
+                const errorEl = container.querySelector('.error-message') || document.getElementById('error-' + id.replace('group-', ''));
+                if (errorEl) {
+                    errorEl.textContent = message;
+                    errorEl.style.display = 'block';
+                }
+            }
+        }
+
+        // ----- Suggested Courses (repeatable box) -----
+        const J_MONTHS = ['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+
+        function fillYearSelect(select, start = 1399, end = 1415) {
+            select.innerHTML = '';
+            for (let y = end; y >= start; y--) {
+                const opt = document.createElement('option');
+                opt.value = String(y);
+                opt.textContent = y;
+                select.appendChild(opt);
+            }
+        }
+
+        function fillMonthSelect(select) {
+            select.innerHTML = '';
+            J_MONTHS.forEach((name, idx) => {
+                const opt = document.createElement('option');
+                opt.value = String(idx + 1);
+                opt.textContent = name;
+                select.appendChild(opt);
+            });
+        }
+
+        function getDaysInJalaliMonth(month) {
+            const m = Number(month);
+            if (m >= 1 && m <= 6) return 31;
+            if (m >= 7 && m <= 11) return 30;
+            return 29; // اسفند؛ ساده‌سازی بدون توجه به سال کبیسه
+        }
+
+        function fillDaySelect(select, month) {
+            const days = getDaysInJalaliMonth(month || 1);
+            select.innerHTML = '';
+            for (let d = 1; d <= days; d++) {
+                const opt = document.createElement('option');
+                opt.value = String(d);
+                opt.textContent = d;
+                select.appendChild(opt);
+            }
+        }
+
+        function fillWeekSelect(select) {
+            select.innerHTML = '';
+            for (let w = 1; w <= 53; w++) {
+                const opt = document.createElement('option');
+                opt.value = String(w);
+                opt.textContent = `هفته ${w}`;
+                select.appendChild(opt);
+            }
+        }
+
+        function initGlobalJalaliPicker() {
+            const typeSel = document.getElementById('global-date-type');
+            const dayWrap = document.getElementById('global-date-day');
+            const weekWrap = document.getElementById('global-date-week');
+            const rangeWrap = document.getElementById('global-date-range');
+
+            if (!typeSel || !dayWrap || !weekWrap || !rangeWrap) {
+                return;
+            }
+
+            const dy = document.getElementById('global-day-year');
+            const dm = document.getElementById('global-day-month');
+            const dd = document.getElementById('global-day-day');
+            if (dy && dm && dd) {
+                fillYearSelect(dy); fillMonthSelect(dm); fillDaySelect(dd, dm.value);
+                dm.addEventListener('change', () => fillDaySelect(dd, dm.value));
+            }
+
+            const wy = document.getElementById('global-week-year');
+            const wn = document.getElementById('global-week-number');
+            if (wy && wn) {
+                fillYearSelect(wy); fillWeekSelect(wn);
+            }
+
+            const rfy = document.getElementById('global-range-from-year');
+            const rfm = document.getElementById('global-range-from-month');
+            const rfd = document.getElementById('global-range-from-day');
+            const rty = document.getElementById('global-range-to-year');
+            const rtm = document.getElementById('global-range-to-month');
+            const rtd = document.getElementById('global-range-to-day');
+            if (rfy && rfm && rfd && rty && rtm && rtd) {
+                fillYearSelect(rfy); fillMonthSelect(rfm); fillDaySelect(rfd, rfm.value);
+                fillYearSelect(rty); fillMonthSelect(rtm); fillDaySelect(rtd, rtm.value);
+                rfm.addEventListener('change', () => fillDaySelect(rfd, rfm.value));
+                rtm.addEventListener('change', () => fillDaySelect(rtd, rtm.value));
+            }
+
+            typeSel.addEventListener('change', () => {
+                dayWrap.style.display = 'none';
+                weekWrap.style.display = 'none';
+                rangeWrap.style.display = 'none';
+                if (typeSel.value === 'day') dayWrap.style.display = '';
+                if (typeSel.value === 'week') weekWrap.style.display = '';
+                if (typeSel.value === 'range') rangeWrap.style.display = '';
+            });
+        }
+
+        function extractGlobalJalaliPicker() {
+            const typeEl = document.getElementById('global-date-type');
+            if (!typeEl) {
+                return { display: '', structured: { type: '', value: null } };
+            }
+
+            const type = typeEl.value;
+            if (!type) return { display: '', structured: { type: '', value: null } };
+            if (type === 'day') {
+                const yEl = document.getElementById('global-day-year');
+                const mEl = document.getElementById('global-day-month');
+                const dEl = document.getElementById('global-day-day');
+                if (!yEl || !mEl || !dEl) return { display: '', structured: { type: '', value: null } };
+                const y = yEl.value;
+                const m = mEl.value;
+                const d = dEl.value;
+                return {
+                    display: `${d} ${J_MONTHS[Number(m)-1]} ${y}`,
+                    structured: { type: 'day', year: Number(y), month: Number(m), day: Number(d) }
+                };
+            }
+            if (type === 'week') {
+                const yEl = document.getElementById('global-week-year');
+                const wEl = document.getElementById('global-week-number');
+                if (!yEl || !wEl) return { display: '', structured: { type: '', value: null } };
+                const y = yEl.value;
+                const w = wEl.value;
+                return {
+                    display: `هفته ${w} سال ${y}`,
+                    structured: { type: 'week', year: Number(y), week: Number(w) }
+                };
+            }
+            if (type === 'range') {
+                const fyEl = document.getElementById('global-range-from-year');
+                const fmEl = document.getElementById('global-range-from-month');
+                const fdEl = document.getElementById('global-range-from-day');
+                const tyEl = document.getElementById('global-range-to-year');
+                const tmEl = document.getElementById('global-range-to-month');
+                const tdEl = document.getElementById('global-range-to-day');
+                if (!fyEl || !fmEl || !fdEl || !tyEl || !tmEl || !tdEl) return { display: '', structured: { type: '', value: null } };
+                const fy = fyEl.value;
+                const fm = fmEl.value;
+                const fd = fdEl.value;
+                const ty = tyEl.value;
+                const tm = tmEl.value;
+                const td = tdEl.value;
+                return {
+                    display: `${fd} ${J_MONTHS[Number(fm)-1]} ${fy} تا ${td} ${J_MONTHS[Number(tm)-1]} ${ty}`,
+                    structured: {
+                        type: 'range',
+                        from: { year: Number(fy), month: Number(fm), day: Number(fd) },
+                        to: { year: Number(ty), month: Number(tm), day: Number(td) }
+                    }
+                };
+            }
+            return { display: '', structured: { type: '', value: null } };
+        }
+
+        // ساده‌سازی انتخاب تاریخ در سطح هر آیتم: فقط انتخاب ماه (مثلاً فروردین، اردیبهشت و ...)
+        function initItemMonthPicker(root) {
+            if (!root) return;
+            const monthSelect = root.querySelector('[data-role="month-only"]');
+            if (!monthSelect) return;
+
+            monthSelect.innerHTML = '';
+            const placeholder = document.createElement('option');
+            placeholder.value = '';
+            placeholder.textContent = 'انتخاب ماه';
+            placeholder.selected = true;
+            placeholder.disabled = true;
+            monthSelect.appendChild(placeholder);
+
+            J_MONTHS.forEach((name, idx) => {
+                const opt = document.createElement('option');
+                opt.value = String(idx + 1);
+                opt.textContent = name;
+                monthSelect.appendChild(opt);
+            });
+        }
+
+        function extractItemMonthPicker(root) {
+            if (!root) return { display: '', structured: { type: '', value: null } };
+            const monthSelect = root.querySelector('[data-role="month-only"]');
+            if (!monthSelect || !monthSelect.value) {
+                return { display: '', structured: { type: '', value: null } };
+            }
+
+            const m = Number(monthSelect.value);
+            const name = J_MONTHS[m - 1] || '';
+            return {
+                display: name,
+                structured: { type: 'month', month: m, name }
+            };
+        }
+        function createSuggestedCourseItem() {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'suggested-course-item';
+            wrapper.setAttribute('role', 'listitem');
+
+            const rid = Math.random().toString(36).slice(2, 8);
+            wrapper.innerHTML = `
+                <div class="suggested-course-item-header">
+                    <div class="suggested-course-item-title"><span class="suggested-course-badge" data-role="course-index">1</span> دوره</div>
+                </div>
+                <div class="suggested-course-rows">
+                    <div class="item-row">
+                        <label>عنوان دوره مورد نیاز</label>
+                        <input type="text" name="suggested_course_title[]" placeholder="نام دوره" required>
+                    </div>
+                    <div class="item-row">
+                        <label>بیان مسأله و نیازمندی شخص/واحد</label>
+                        <input type="text" name="suggested_problem_description[]" placeholder="مسأله/نیازمندی">
+                    </div>
+                    <div class="item-row">
+                        <label>تاریخ پیشنهادی برگزاری دوره</label>
+                        <div class="jalali-date-picker" data-role="item-jalali-date">
+                            <div class="jalali-date-row">
+                                <select data-role="month-only"></select>
+                            </div>
+                            <p class="jalali-date-hint">فقط ماه برگزاری دوره را انتخاب کنید (مثلاً فروردین، اردیبهشت و ...)</p>
+                        </div>
+                    </div>
+                    <div class="item-row">
+                        <label>فراگینده / فراگیرندگان</label>
+                        <input type="text" data-role="learners-input" placeholder="شناسه پرسنلی (8 رقم)" maxlength="8" inputmode="numeric">
+                        <div class="suggested-chips-container" data-role="learners-chips"></div>
+                        <div class="error-message" data-role="learners-error" style="display:none;"></div>
+                        <p class="field-description" style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-muted);">شناسه پرسنلی 8 رقمی را وارد کنید. پس از وارد کردن 8 رقم، به صورت خودکار اضافه می‌شود.</p>
+                    </div>
+                    <div class="item-row">
+                        <label style="display:flex; align-items:center; gap:0.5rem;">
+                            <input type="checkbox" data-role="toggle-link"> افزودن لینک آموزش (اختیاری)
+                        </label>
+                        <div data-role="link-row" style="display:none;">
+                            <input type="url" name="suggested_tutorial_link[]" placeholder="https://...">
+                        </div>
+                    </div>
+                    <div class="item-row">
+                        <label>خروجی مورد انتظار</label>
+                        <textarea rows="2" data-role="expected-outcome" placeholder="نتیجه مورد انتظار از این دوره"></textarea>
+                    </div>
+                    <div class="item-row">
+                        <label>آیا دوره و محتوا قابل اجرا هستند؟</label>
+                        <select data-role="feasibility">
+                            <option value="">انتخاب کنید</option>
+                            <option value="yes">بله</option>
+                            <option value="no">خیر</option>
+                            <option value="partial">تا حدی</option>
+                        </select>
+                    </div>
+                    <div class="item-row">
+                        <fieldset class="form-group choice-group" data-role="parameters">
+                            <legend>پارامترهای قابل اندازه‌گیری:</legend>
+                            <div class="choice-item">
+                                <input type="checkbox" id="param-learning-${rid}" value="learning">
+                                <label for="param-learning-${rid}">یادگیری</label>
+                            </div>
+                            <div class="choice-item">
+                                <input type="checkbox" id="param-knowledge-${rid}" value="knowledge">
+                                <label for="param-knowledge-${rid}">دانش</label>
+                            </div>
+                            <div class="choice-item">
+                                <input type="checkbox" id="param-skill-${rid}" value="skill">
+                                <label for="param-skill-${rid}">مهارت</label>
+                            </div>
+                            <div class="choice-item">
+                                <input type="checkbox" id="param-behavior-${rid}" value="behavior">
+                                <label for="param-behavior-${rid}">رفتار</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="item-row">
+                        <fieldset class="form-group choice-group" data-role="evaluation">
+                            <legend>روش سنجش اثربخشی آموزش:</legend>
+                            <div class="choice-item">
+                                <input type="checkbox" id="eval-teach-others-${rid}" value="teach_others">
+                                <label for="eval-teach-others-${rid}">آموزش دوره به شخص دیگر</label>
+                            </div>
+                            <div class="choice-item">
+                                <input type="checkbox" id="eval-behavior-change-${rid}" value="behavior_change">
+                                <label for="eval-behavior-change-${rid}">مشاهده تغییر رفتار</label>
+                            </div>
+                            <div class="choice-item">
+                                <input type="checkbox" id="eval-performance-improvement-${rid}" value="performance_improvement">
+                                <label for="eval-performance-improvement-${rid}">بهبود عملکرد</label>
+                            </div>
+                            <div class="choice-item">
+                                <input type="checkbox" id="eval-test-${rid}" value="test">
+                                <label for="eval-test-${rid}">آزمون تئوری / عملی</label>
+                            </div>
+                            <div class="choice-item">
+                                <input type="checkbox" id="eval-org-index-${rid}" value="org_index">
+                                <label for="eval-org-index-${rid}">شاخص سازمانی</label>
+                            </div>
+                            <div class="choice-item">
+                                <input type="checkbox" id="eval-content-quality-${rid}" value="content_quality">
+                                <label for="eval-content-quality-${rid}">سنجش دانش (کیفیت محتوا)</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="suggested-course-actions">
+                    <button type="button" class="remove-link-btn" aria-label="حذف این مورد">✕</button>
+                </div>
+            `;
+
+            wrapper.querySelector('.remove-link-btn').addEventListener('click', () => {
+                wrapper.remove();
+    renumberSuggestedCourseItems();
+            });
+
+            // link toggle UX
+            const toggle = wrapper.querySelector('[data-role="toggle-link"]');
+            const linkRow = wrapper.querySelector('[data-role="link-row"]');
+            toggle.addEventListener('change', () => {
+                linkRow.style.display = toggle.checked ? '' : 'none';
+                if (!toggle.checked) {
+                    const input = linkRow.querySelector('input[type="url"]');
+                    if (input) input.value = '';
+                }
+            });
+
+            initItemMonthPicker(wrapper.querySelector('[data-role="item-jalali-date"]'));
+
+            // Setup learners input chip functionality
+            const learnersInput = wrapper.querySelector('[data-role="learners-input"]');
+            const chipsContainer = wrapper.querySelector('[data-role="learners-chips"]');
+            
+            if (learnersInput && chipsContainer) {
+                // Only allow numeric input
+                learnersInput.addEventListener('input', function(e) {
+                    let value = e.target.value;
+                    // Remove any non-numeric characters
+                    value = value.replace(/[^\d]/g, '');
+                    e.target.value = value;
+
+                    // If exactly 8 digits, create chip automatically
+                    if (value.length === 8) {
+                        addLearnerChip(chipsContainer, value);
+                        e.target.value = '';
+                    }
+                });
+
+                // Handle separators for multiple IDs
+                learnersInput.addEventListener('keydown', function(e) {
+                    const value = e.target.value;
+                    
+                    // Check if separator key is pressed
+                    const separators = /[,\s;،]/;
+                    if (separators.test(e.key) && value.length > 0) {
+                        e.preventDefault();
+                        if (value.length === 8) {
+                            addLearnerChip(chipsContainer, value);
+                            e.target.value = '';
+                        }
+                    }
+                    
+                    // Enter key
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        if (value.length === 8) {
+                            addLearnerChip(chipsContainer, value);
+                            e.target.value = '';
+                        }
+                    }
+                });
+
+                // Handle paste events
+                learnersInput.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+                    // Extract all 8-digit numbers from pasted text
+                    const eightDigitNumbers = pastedText.match(/\d{8}/g);
+                    if (eightDigitNumbers) {
+                        eightDigitNumbers.forEach(num => {
+                            addLearnerChip(chipsContainer, num);
+                        });
+                    }
+                    e.target.value = '';
+                });
+            }
+
+            return wrapper;
+        }
+
+        function addLearnerChip(container, personnelId) {
+            if (!container) return;
+            if (!personnelId || !personnelId.trim()) return;
+            
+            const trimmedId = personnelId.trim();
+            const parentRow = container.closest('.item-row');
+            const errorEl = parentRow ? parentRow.querySelector('[data-role="learners-error"]') : null;
+            const numericPattern = /^\d{8}$/;
+
+            if (!numericPattern.test(trimmedId)) {
+                if (errorEl) {
+                    errorEl.textContent = 'شناسه پرسنلی باید دقیقاً 8 رقم باشد.';
+                    errorEl.style.display = 'block';
+                }
+                return;
+            }
+
+            if (errorEl) {
+                errorEl.style.display = 'none';
+            }
+            
+            // Check if chip already exists
+            const existingChip = container.querySelector(`[data-personnel-id="${trimmedId}"]`);
+            if (existingChip) return;
+
+            const chip = document.createElement('div');
+            chip.className = 'suggested-chip';
+            chip.setAttribute('data-personnel-id', trimmedId);
+            chip.innerHTML = `
+                <span>${trimmedId}</span>
+                <button type="button" class="remove-chip" onclick="removeLearnerChip(this)">×</button>
+            `;
+            container.appendChild(chip);
+        }
+
+        function removeLearnerChip(button) {
+            const chip = button.closest('.suggested-chip');
+            if (chip) {
+                chip.remove();
+            }
+        }
+
+        function addInitialSuggestedCourseIfNeeded() {
+            if (suggestedCoursesList && suggestedCoursesList.children.length === 0) {
+                suggestedCoursesList.appendChild(createSuggestedCourseItem());
+        renumberSuggestedCourseItems();
+            }
+        }
+
+function renumberSuggestedCourseItems() {
+    const items = Array.from(document.querySelectorAll('.suggested-course-item'));
+    items.forEach((item, idx) => {
+        const badge = item.querySelector('[data-role="course-index"]');
+        if (badge) badge.textContent = String(idx + 1);
+    });
+}
+
+        function getSuggestedCoursesData() {
+            const titles = Array.from(document.getElementsByName('suggested_course_title[]'));
+            const problems = Array.from(document.getElementsByName('suggested_problem_description[]'));
+            const links = Array.from(document.getElementsByName('suggested_tutorial_link[]'));
+            const itemWrappers = Array.from(document.querySelectorAll('.suggested-course-item'));
+
+            const count = Math.max(titles.length, problems.length, links.length, itemWrappers.length);
+            const items = [];
+            for (let i = 0; i < count; i++) {
+                const wrapper = itemWrappers[i];
+                if (!wrapper) continue;
+
+                const dateData = extractItemMonthPicker(wrapper.querySelector('[data-role="item-jalali-date"]'));
+                const expectedOutcome = (wrapper.querySelector('[data-role="expected-outcome"]')?.value || '').trim();
+                const feasibility = (wrapper.querySelector('[data-role="feasibility"]')?.value || '').trim();
+                const parameters = Array.from(wrapper.querySelectorAll('[data-role="parameters"] input[type="checkbox"]:checked') || []).map(el => el.value);
+                const evaluation = Array.from(wrapper.querySelectorAll('[data-role="evaluation"] input[type="checkbox"]:checked') || []).map(el => el.value);
+                
+                // Collect learners from chips
+                const chipsContainer = wrapper.querySelector('[data-role="learners-chips"]');
+                const learnerChips = chipsContainer ? Array.from(chipsContainer.querySelectorAll('.suggested-chip[data-personnel-id]')).map(chip => chip.getAttribute('data-personnel-id')) : [];
+                const learnersValue = learnerChips.join(', ');
+
+                items.push({
+                    course_title: (titles[i]?.value || '').trim(),
+                    problem_description: (problems[i]?.value || '').trim(),
+                    suggested_date: dateData.display,
+                    suggested_date_structured: dateData.structured,
+                    learners: learnersValue,
+                    tutorial_link: (links[i]?.value || '').trim(),
+                    expected_outcome: expectedOutcome,
+                    feasibility,
+                    parameters,
+                    evaluation,
+                });
+            }
+            return items.filter(it => it.course_title || it.learners || it.problem_description || it.suggested_date || it.tutorial_link);
+        }
+
+        /**
+         * Client-side validation function.
+         * @returns {boolean} True if the form is valid, false otherwise.
+         */
+        function validateForm() {
+            clearAllErrors();
+            let isValid = true;
+
+            // 1. Department selection
+            if (!departmentSelect.value) {
+                showError('group-department', STRINGS.errorRequired);
+                isValid = false;
+            }
+
+            // Don't validate other fields if department is not selected
+            if (!departmentSelect.value) {
+                return isValid;
+            }
+
+            // Validate Suggested Courses box (at least one item with required fields)
+            suggestedCoursesError.style.display = 'none';
+            const itemWrappers = Array.from(document.querySelectorAll('.suggested-course-item'));
+            if (itemWrappers.length === 0) {
+                suggestedCoursesError.style.display = 'block';
+                isValid = false;
+            } else {
+                // Each item: require course_title and at least one learner chip
+                for (const wrapper of itemWrappers) {
+                    const titleInput = wrapper.querySelector('input[name="suggested_course_title[]"]');
+                    const chipsContainer = wrapper.querySelector('[data-role="learners-chips"]');
+                    const chips = chipsContainer ? Array.from(chipsContainer.querySelectorAll('.suggested-chip[data-personnel-id]')) : [];
+                    
+                    const missingTitle = !titleInput || !titleInput.value.trim();
+                    const missingLearners = chips.length === 0;
+                    
+                    if (missingTitle || missingLearners) {
+                        suggestedCoursesError.style.display = 'block';
+                        isValid = false;
+                        break;
+                    }
+                }
+            }
+            
+            return isValid;
+        }
+
+        /**
+         * Collects form data into a structured JSON object.
+         * @returns {object} The structured form data.
+         */
+        function serializeForm() {
+            const formData = new FormData(form);
+            const departmentName = formData.get('department') || '';
+            const departmentId = typeof getSelectedDepartmentId === 'function'
+                ? getSelectedDepartmentId(departmentSelect)
+                : '';
+
+            const globalDate = extractGlobalJalaliPicker();
+            const suggestedCoursesData = getSuggestedCoursesData();
+            // Always ensure suggestedCourses is an array, even if empty
+            const suggestedCourses = Array.isArray(suggestedCoursesData) 
+                ? suggestedCoursesData.map(item => ({
+                    courseTitle: item.course_title,
+                    problemDescription: item.problem_description,
+                    suggestedDate: item.suggested_date,
+                    suggestedDateStructured: item.suggested_date_structured,
+                    learners: item.learners,
+                    tutorialLink: item.tutorial_link,
+                    expectedOutcome: item.expected_outcome,
+                    feasibility: item.feasibility,
+                    parameters: item.parameters,
+                    evaluation: item.evaluation,
+                }))
+                : [];
+
+            return {
+                department: departmentName,
+                departmentId,
+                departmentName,
+                objectives: formData.get('objectives') || '',
+                expectations: formData.get('expectations') || '',
+                courseTitle: formData.get('course_title') || '',
+                problemDescription: formData.get('problem_description') || '',
+                suggestedDate: globalDate.display || '',
+                suggestedDateStructured: globalDate.structured || {},
+                courseTopics: formData.get('course_topics') || '',
+                suggestedCourses: suggestedCourses,
+                submittedAt: new Date().toISOString(),
+            };
+        }
+
+        /**
+         * Toggles loading state on the submit button.
+         */
+        function showLoading() {
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '⏳ در حال ارسال...';
+            }
+        }
+
+        function hideLoading() {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = submitBtnInitialHTML || 'ارسال';
+            }
+        }
+
+        /**
+         * Sends the payload to the API (simple fetch identical to employee form).
+         * @param {object} payload
+         */
+        function submitForm(payload) {
+            showLoading();
+            fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.text())
+            .then(text => {
+                hideLoading();
+                console.log('Response:', text);
+                showModal('✅ موفق', 'داده‌ها با موفقیت ارسال شد');
+            })
+            .catch(err => {
+                hideLoading();
+                console.error('Error:', err);
+                showModal('❌ خطا', 'خطا در ارسال: ' + err.message);
+            });
+        }
+        
+        /**
+         * Displays the confirmation/error modal.
+         * @param {string} title The title for the modal.
+         * @param {string} message The message body.
+         */
+        function showModal(title, message) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modal.style.display = 'block';
+        }
+
+        if (submitBtn) {
+            submitBtn.onclick = function(e) {
+                e.preventDefault();
+                if (!validateForm()) {
+                    const firstError = document.querySelector('.is-invalid') || document.getElementById('suggested-courses-error');
+                    if (firstError) {
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                    return;
+                }
+
+                const payload = serializeForm();
+                console.log('Sending:', payload);
+                submitForm(payload);
+            };
+        }
+
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (submitBtn) {
+                    submitBtn.click();
+                }
+            });
+        }
+        
+        // Modal close functionality
+        document.querySelector('.close-btn').onclick = () => {
+            modal.style.display = 'none';
+        };
+        window.onclick = (event) => {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
+
+        // Initialize suggested courses and add-button behavior
+        document.getElementById('add-suggested-course-btn').addEventListener('click', () => {
+            suggestedCoursesList.appendChild(createSuggestedCourseItem());
+    renumberSuggestedCourseItems();
+        });
+        addInitialSuggestedCourseIfNeeded();
+        initGlobalJalaliPicker();
+
+    </script>
+
+</body>
+</html>
